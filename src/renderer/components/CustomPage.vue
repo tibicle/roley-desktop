@@ -1,7 +1,7 @@
 <template>
     <div class="main-outer display-flex">
       <div class="title-bar">
-        <!-- <div class="screen-btn">
+        <div class="screen-btn">
           <ul>
             <li>
               <a @click="closeWindow" class="minimize">
@@ -19,7 +19,7 @@
               </a>
             </li>
           </ul>
-        </div> -->
+        </div>
         <h2>Roley</h2>
       </div>
       <div class="page-content">
