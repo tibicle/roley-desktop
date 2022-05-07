@@ -7,6 +7,7 @@
   "main": "./dist/electron/main.js",
   "scripts": {
     "build": "node .electron-vue/build.js && electron-builder",
+    "build:win32": "node .electron-vue/build.js && electron-builder --win --ia32",
     "build:dir": "node .electron-vue/build.js && electron-builder --dir",
     "build:clean": "cross-env BUILD_TARGET=clean node .electron-vue/build.js",
     "build:web": "cross-env BUILD_TARGET=web node .electron-vue/build.js",
@@ -25,6 +26,8 @@
   "build": {
     "productName": "roley",
     "appId": "com.example.roley",
+    "forceCodeSigning": false,
+    "asar": true,
     "directories": {
       "output": "build"
     },
@@ -44,10 +47,13 @@
           "y": 150,
           "type": "file"
         }
-      ]
+      ],
+      "sign":false
     },
     "mac": {
-      "icon": "build/icons/icon.icns"
+      "icon": "build/icons/icon.icns",
+      "type": "distribution",
+      "identity":"roley"
     },
     "win": {
       "icon": "build/icons/icon.ico"

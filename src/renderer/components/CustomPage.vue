@@ -1,26 +1,27 @@
 <template>
     <div class="main-outer display-flex">
       <div class="title-bar">
-        <div class="screen-btn">
+        <!-- <div class="screen-btn">
           <ul>
             <li>
-              <a class="minimize">
+              <a @click="closeWindow" class="minimize">
 
               </a>
             </li>
             <li>
-              <a class="maximize">
+              <a @click="minimizeWindow" class="maximize">
 
               </a>
             </li>
             <li>
-              <a class="close-screen">
+              <a @click="fullScreen" class="close-screen">
 
               </a>
             </li>
           </ul>
-        </div>
-        <h2>Roley</h2></div>
+        </div> -->
+        <h2>Roley</h2>
+      </div>
       <div class="page-content">
         <div class="sidebar">
             <sidebar></sidebar>
@@ -47,13 +48,25 @@
     import pagecontent from './custompage/pagecontent'
     import pagefooter from './custompage/pagefooter'
     import vuejstree from './custompage/vuejstree'
-
+    import { remote } from 'electron'
     export default {
       name: 'custompage',
       components: { sidebar, pageTitle, pagecontent, vuejstree, pagefooter },
       methods: {
         open (link) {
           this.$electron.shell.openExternal(link)
+        },
+        fullScreen() {
+          var win = remote.BrowserWindow.getFocusedWindow();
+          win.setFullScreen(!win.isFullScreen());
+        },
+        closeWindow() {
+          var win = remote.BrowserWindow.getFocusedWindow();
+          win.close();
+        },
+        minimizeWindow() {
+          var win = remote.BrowserWindow.getFocusedWindow();
+          win.minimize();
         }
       }
     }
