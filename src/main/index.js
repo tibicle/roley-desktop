@@ -67,19 +67,11 @@ async function createWindow () {
   mainWindow.on('closed', () => {
     mainWindow = null
   });
-  console.log('getTitle')
-  // console.log(ipcMain);
-  // console.log(ipcRenderer);
-  // //ipcMain.emit('deep-link-url',"home");
-  //mainWindow.send('ping');
-  mainWindow.webContents.send('deep-link-url',"home");
 }
 
 app.on('ready', async ()=>{
 
   await createWindow();
-  mainWindow.webContents.send('ping', 'whoooooooh!');
-  ipcMain.send('deep-link-url',"home");
 
 })
 
