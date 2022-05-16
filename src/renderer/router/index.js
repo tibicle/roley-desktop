@@ -12,6 +12,11 @@ export default new Router({
     {
       path: '*',
       redirect: '/'
+    },
+    {
+      path: '/deepLink',
+      name: 'dee[link',
+      component: require('@/components/DeepLink').default
     }
   ]
 })

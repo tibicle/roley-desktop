@@ -6,7 +6,16 @@
 
 <script>
   export default {
-    name: 'roley'
+    name: 'roley',
+    mounted() {
+      console.log('mounted');
+      this.$electron.ipcRenderer.on('deep-link-url', (event, arg) => {
+        console.log('received');
+        console.log(event);
+        console.log(arg);
+        this.$router.push({ name: 'dee[link' })
+      });
+    }
   }
 </script>
 
@@ -18,7 +27,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-font-family: 'Inter', sans-serif;
+    font-family: 'Inter', sans-serif;
   }
   html,body{
     width: 100%;

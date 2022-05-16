@@ -26,6 +26,12 @@
   "build": {
     "productName": "roley",
     "appId": "com.example.roley",
+    "protocols": {
+      "name": "roley",
+      "schemes": [
+        "roley"
+      ]
+    },
     "forceCodeSigning": false,
     "asar": true,
     "directories": {
@@ -48,12 +54,12 @@
           "type": "file"
         }
       ],
-      "sign":false
+      "sign": false
     },
     "mac": {
       "icon": "build/icons/icon.icns",
       "type": "distribution",
-      "identity":"roley"
+      "identity": "roley"
     },
     "win": {
       "icon": "build/icons/icon.ico"
@@ -95,7 +101,7 @@
     "css-loader": "^0.28.11",
     "del": "^3.0.0",
     "devtron": "^1.4.0",
-    "electron": "^2.0.4",
+    "electron": "^12.0.7",
     "electron-builder": "^23.0.3",
     "electron-debug": "^1.5.0",
     "electron-devtools-installer": "^2.2.4",
