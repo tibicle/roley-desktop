@@ -14,7 +14,7 @@
               </a>
             </li>
             <li>
-              <a class="close-screen">
+              <a class="close-screen" id="closeBtn">
 
               </a>
             </li>
@@ -75,9 +75,11 @@
   display: flex;
   flex-direction: column;
   -webkit-user-drag: element;
+  -webkit-app-region: drag;
 }
 .title-bar{
   -webkit-user-drag: element;
+  -webkit-app-region: drag;
   text-align: center;
   background: #066148;
   color: #fff;

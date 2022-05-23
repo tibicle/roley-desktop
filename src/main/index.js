@@ -1,5 +1,13 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, ipcRenderer, ipcMain } from 'electron'
 import '../renderer/store'
+
+const ipcm = ipcMain
+const ipc = ipcRenderer
+/// close-btn
+closeBtn.addEventlistenr('click', () => {
+  ipc.send('closeapp');
+})
+
 //import Tree from 'vuejs-tree' 
 /**
  * Set `__static` path to static files in production
@@ -23,7 +31,10 @@ function createWindow () {
     height: 563,
     useContentSize: true,
     width: 1000,
-    frame : false
+    frame : false,
+    webpreferences : {
+      contextIsolations: false
+    }
   })
 
   mainWindow.loadURL(winURL)
@@ -32,7 +43,10 @@ function createWindow () {
     mainWindow = null
   })
 
-  //mainWindow.setMenuBarVisibility(false)
+  mainWindow.setMenuBarVisibility(false)
+  ipcm.on('closeApp', () =>{
+    console.log('close');
+  })
 }
 
 app.on('ready', createWindow)
