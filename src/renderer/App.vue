@@ -22,7 +22,7 @@
 <style lang="scss">
   /* CSS */
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-
+  @import '../assets/main.scss';
   *{
     box-sizing: border-box;
     margin: 0;
@@ -38,10 +38,4 @@
     width: 100%;
     height: 100%;
   }
-  .typography{
-    background-color: rgb(176, 187, 30);
-    .text-theme-color-green {
-        color: #066148; 
-    }
-}
 </style>
