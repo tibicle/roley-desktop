@@ -1,6 +1,6 @@
 import { app, BrowserWindow, ipcMain, ipcRenderer } from 'electron'
 import '../renderer/store'
-import '../scss/style.scss'
+//import '../scss/style.scss'
 //import Tree from 'vuejs-tree' 
 /**
  * Set `__static` path to static files in production
