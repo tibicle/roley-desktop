@@ -1,68 +1,20 @@
 <template>
     <div class="main-outer display-flex">
-      <div class="title-bar">
-        <!-- <div class="screen-btn">
-          <ul>
-            <li>
-              <a @click="closeWindow" class="minimize">
-
-              </a>
-            </li>
-            <li>
-              <a @click="minimizeWindow" class="maximize">
-
-              </a>
-            </li>
-            <li>
-              <a @click="fullScreen" class="close-screen" id="closeBtn">
-
-              </a>
-            </li>
-          </ul>
-        </div> -->
-        <h2>Roley</h2>
-      </div>
-      <div class="page-content">
-        <div class="sidebar">
-            <sidebar></sidebar>
-        </div>
-        <div class="content">
-          <div class="header">
-            <pageTitle></pageTitle>
-          </div>
-          <div class="page-content">
-            <pagecontent></pagecontent>
-            <vuejstree></vuejstree>
-          </div>
-          <deepLink></deepLink>
-        </div>
-      </div>
-        <div class="footer">
-          <a href="javascript:void(0)"  @click="send">HIHIIHIH</a>
-          
-          <pagefooter></pagefooter>
-        </div>
+      This is DeepLink
     </div>
 </template>
 
 <script>
     import sidebar from './custompage/sidebar'
     import pageTitle from './custompage/title'
-    import pagecontent from './custompage/pagecontent'
     import pagefooter from './custompage/pagefooter'
     import vuejstree from './custompage/vuejstree'
-    import deepLink from './DeepLink';
     import { remote } from 'electron'
+
     export default {
-      name: 'custompage',
-      components: { sidebar, pageTitle, pagecontent, vuejstree, pagefooter, deepLink },
+      name: 'deepLink',
+      components: { sidebar, pageTitle, vuejstree, pagefooter },
       methods: {
-        send () {
-          console.log('sending called');
-          this.$electron.ipcRenderer.send('deep-link-url', {
-            data: "sending from app.vue"
-          });
-        },
         open (link) {
           this.$electron.shell.openExternal(link)
         },
@@ -80,13 +32,17 @@
         }
       },
       mounted() {
-        console.log('c mounted');
-        
+        console.log('deep link mounted');
+        this.$electron.ipcRenderer.on('deep-link-url', (event,arg) => {
+            console.log('received');
+            console.log(event);
+            console.log(arg);
+        });
       }
     }
 </script>
 
-<style>
+<style >
   @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
   * {
@@ -106,7 +62,6 @@
   display: flex;
   flex-direction: column;
   -webkit-user-drag: element;
-  -webkit-app-region: drag;
 }
 .titlebar {
   -webkit-user-select: none;
@@ -114,7 +69,6 @@
 }
 .title-bar{
   -webkit-user-drag: element;
-  -webkit-app-region: drag;
   text-align: center;
   background: #066148;
   color: #fff;

@@ -7,6 +7,7 @@
   "main": "./dist/electron/main.js",
   "scripts": {
     "build": "node .electron-vue/build.js && electron-builder",
+    "build:win32": "node .electron-vue/build.js && electron-builder --win --ia32",
     "build:dir": "node .electron-vue/build.js && electron-builder --dir",
     "build:clean": "cross-env BUILD_TARGET=clean node .electron-vue/build.js",
     "build:web": "cross-env BUILD_TARGET=web node .electron-vue/build.js",
@@ -25,6 +26,14 @@
   "build": {
     "productName": "roley",
     "appId": "com.example.roley",
+    "protocols": {
+      "name": "roley",
+      "schemes": [
+        "roley"
+      ]
+    },
+    "forceCodeSigning": false,
+    "asar": true,
     "directories": {
       "output": "build"
     },
@@ -44,10 +53,13 @@
           "y": 150,
           "type": "file"
         }
-      ]
+      ],
+      "sign": false
     },
     "mac": {
-      "icon": "build/icons/icon.icns"
+      "icon": "build/icons/icon.icns",
+      "type": "distribution",
+      "identity": "roley"
     },
     "win": {
       "icon": "build/icons/icon.ico"
@@ -86,10 +98,10 @@
     "chalk": "^2.4.1",
     "copy-webpack-plugin": "^4.5.1",
     "cross-env": "^5.1.6",
-    "css-loader": "^0.28.11",
+    "css-loader": "^5.1.1",
     "del": "^3.0.0",
     "devtron": "^1.4.0",
-    "electron": "^2.0.4",
+    "electron": "^12.0.7",
     "electron-builder": "^23.0.3",
     "electron-debug": "^1.5.0",
     "electron-devtools-installer": "^2.2.4",
@@ -109,9 +121,8 @@
     "mini-css-extract-plugin": "0.4.0",
     "mocha": "^5.2.0",
     "node-loader": "^0.6.0",
-    "node-sass": "^6.0.1",
     "require-dir": "^1.0.0",
-    "sass-loader": "^7.3.1",
+    "sass-loader": "^13.0.0",
     "spectron": "^3.8.0",
     "style-loader": "^0.21.0",
     "url-loader": "^1.0.1",

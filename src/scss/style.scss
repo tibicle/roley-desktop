@@ -1,5 +1,11 @@
 body{
     padding:0;
     margin:0;
-    background-color: aqua;
+    background: aqua;
+}
+.typography{
+    background-color: gray;
+    .text-theme-color-green {
+        color: #066148; 
+    }
 }
