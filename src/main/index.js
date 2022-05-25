@@ -1,5 +1,33 @@
 import { app, BrowserWindow, ipcMain, ipcRenderer } from 'electron'
 import '../renderer/store'
+
+// const uaup = require('uaup-js');
+
+// const defaultStages = {
+//   Checking: "Checking For Updates!", // When Checking For Updates.
+//   Found: "Update Found!",  // If an Update is Found.
+//   NotFound: "No Update Found.", // If an Update is Not Found.
+//   Downloading: "Downloading...", // When Downloading Update.
+//   Unzipping: "Installing...", // When Unzipping the Archive into the Application Directory.
+//   Cleaning: "Finalizing...", // When Removing Temp Directories and Files (ex: update archive and tmp directory).
+//   Launch: "Launching..." // When Launching the Application.
+// };
+
+// const updateOptions = {
+//   useGitub: true, // {Default is true} [Optional] Only Github is Currenlty Supported.
+//   gitRepo: "roley-desktop", // [Required] Your Repo Name
+//   gitUsername: "ShivangNanda",  // [Required] Your GitHub Username.
+//   isGitRepoPrivate: false,  // {Default is false} [Optional] If the Repo is Private or Public  (Currently not Supported).
+//   gitRepoToken: "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",  // {Default is null} [Optional] The Token from GitHub to Access a Private Repo.  Only for Private Repos.
+
+//   appName: "Roley", //[Required] The Name of the app archive and the app folder.
+//   appExecutableName: "Roley.exe", //[Required] The Executable of the Application to be Run after updating.
+
+//   progressBar: null, // {Default is null} [Optional] If Using Electron with a HTML Progressbar, use that element here, otherwise ignore
+//   label: null, // {Default is null} [Optional] If Using Electron, this will be the area where we put status updates using InnerHTML
+//   forceUpdate: false, // {Default is false} [Optional] If the Application should be forced updated.  This will change to true if any errors ocurr while launching.
+//   stageTitles: defaultStages, // {Default is defaultStages} [Optional] Sets the Status Title for Each Stage
+// };
 //import Tree from 'vuejs-tree' 
 /**
  * Set `__static` path to static files in production
@@ -45,7 +73,7 @@ async function createWindow () {
   /**
    * Initial window options
    */
-  mainWindow = new BrowserWindow({
+  let config = {
     height: 563,
     useContentSize: true,
     width: 1000,
@@ -55,7 +83,15 @@ async function createWindow () {
       contextIsolation: false,
       enableRemoteModule: true
     }
-  })
+  
+  }
+  //mainWindow = new BrowserWindow();
+  if(process.platform == 'darwin') {
+    config['titleBarStyle'] = 'hidden';
+  } else {
+    config['frame'] = false;
+  }
+  mainWindow = new BrowserWindow(config);
 
   mainWindow.loadURL(winURL)
   

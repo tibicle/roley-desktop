@@ -14,7 +14,7 @@
               </a>
             </li>
             <li>
-              <a @click="fullScreen" class="close-screen">
+              <a @click="fullScreen" class="close-screen" id="closeBtn">
 
               </a>
             </li>
@@ -86,7 +86,7 @@
     }
 </script>
 
-<style >
+<style>
   @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
   * {
@@ -106,6 +106,11 @@
   display: flex;
   flex-direction: column;
   -webkit-user-drag: element;
+  -webkit-app-region: drag;
+}
+.titlebar {
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
 }
 .titlebar {
   -webkit-user-select: none;
@@ -113,6 +118,7 @@
 }
 .title-bar{
   -webkit-user-drag: element;
+  -webkit-app-region: drag;
   text-align: center;
   background: #066148;
   color: #fff;

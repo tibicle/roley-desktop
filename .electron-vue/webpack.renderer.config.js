@@ -33,6 +33,7 @@ let rendererConfig = {
     rules: [
       {
         test: /\.scss$/,
+        //use: ['vue-style-loader', 'css-loader', 'sass-loader']
         use: ['vue-style-loader', 'css-loader', 'sass-loader']
       },
       {
@@ -147,7 +148,7 @@ let rendererConfig = {
       '@': path.join(__dirname, '../src/renderer'),
       'vue$': 'vue/dist/vue.esm.js'
     },
-    extensions: ['.js', '.vue', '.json', '.css', '.node']
+    extensions: ['.js', '.vue', '.json', '.css', '.node', '.scss']
   },
   target: 'electron-renderer'
 }
